@@ -27,7 +27,7 @@ public enum Country {
             try {
                 throw new NoSuchCountryException();
             } catch (NoSuchCountryException e) {
-                System.out.println("Страны " + currentRuName + " не существует");
+                System.out.println("Страны '" + currentRuName + "' не существует");
             }
         }
         return currentCountry;
