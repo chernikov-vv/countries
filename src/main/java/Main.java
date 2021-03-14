@@ -20,14 +20,16 @@ public class Main {
         String currentCountry = scanner.nextLine();
 
         try {
-            System.out.println("Страна " + Country.valueOf(currentCountry)
-                    + isOpen(Country.valueOf(currentCountry).getIsOpen()));
+            Country enCountry = Country.valueOf(currentCountry);
+            System.out.println("Страна " + enCountry + isOpen(enCountry.getIsOpen()));
         } catch (IllegalArgumentException e) {
             System.out.println(
                     "Наименование страны на английском языке введено некорректно, проверяем русское название...");
-            if (Country.getByRuName(currentCountry) != null) {
-                System.out.println("Страна " + Country.getByRuName(currentCountry)
-                        + isOpen(Country.getByRuName(currentCountry).getIsOpen()));
+            try {
+                Country ruCountry = Country.getByRuName(currentCountry);
+                System.out.println("Страна " + ruCountry + isOpen(ruCountry.getIsOpen()));
+            } catch (NoSuchCountryException ex) {
+                System.out.println("Страны '" + currentCountry + "' не существует");
             }
         } catch (NullPointerException e) {
             System.out.println("Название страны не может быть null");

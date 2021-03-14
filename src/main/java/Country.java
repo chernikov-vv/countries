@@ -1,6 +1,8 @@
 public enum Country {
-    ENGLAND("Англия", false), POLAND("Польша", true),
-    PORTUGAL("Португалия", false), RUSSIA("Россия", true),
+    ENGLAND("Англия", false),
+    POLAND("Польша", true),
+    PORTUGAL("Португалия", false),
+    RUSSIA("Россия", true),
     USA("США", false);
 
     private final String ruName;
@@ -15,7 +17,7 @@ public enum Country {
         return this.isOpen;
     }
 
-    static Country getByRuName(final String currentRuName) {
+    static Country getByRuName(final String currentRuName) throws NoSuchCountryException {
 
         Country currentCountry = null;
         for (Country country : Country.values()) {
@@ -24,11 +26,7 @@ public enum Country {
             }
         }
         if (currentCountry == null) {
-            try {
-                throw new NoSuchCountryException();
-            } catch (NoSuchCountryException e) {
-                System.out.println("Страны '" + currentRuName + "' не существует");
-            }
+            throw new NoSuchCountryException();
         }
         return currentCountry;
     }
@@ -38,5 +36,3 @@ public enum Country {
         return name() + " (" + ruName + ")";
     }
 }
-
-
